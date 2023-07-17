@@ -1,0 +1,131 @@
+{
+  "type": "object",
+  "properties": {
+    "foo/:organization_id": {
+      "type": "object",
+      "properties": {
+        "GET": {
+          "type": "object",
+          "properties": {
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "object",
+                  "properties": {
+                    "organization_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "organization_id"
+                  ]
+                }
+              },
+              "required": [
+                "path"
+              ]
+            },
+            "responses": {
+              "type": "object",
+              "properties": {}
+            },
+            "errors": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "required": [
+            "errors",
+            "parameters",
+            "responses"
+          ]
+        },
+        "POST": {
+          "type": "object",
+          "properties": {
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "object",
+                  "properties": {
+                    "organization_id": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "organization_id"
+                  ]
+                },
+                "body": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "age": {
+                      "type": "number"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "age",
+                    "email",
+                    "name"
+                  ]
+                },
+                "query": {
+                  "type": "object",
+                  "properties": {
+                    "premium": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "premium"
+                  ]
+                }
+              },
+              "required": [
+                "body",
+                "path",
+                "query"
+              ]
+            },
+            "responses": {
+              "type": "object",
+              "properties": {
+                "200": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "200"
+              ]
+            },
+            "errors": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "required": [
+            "errors",
+            "parameters",
+            "responses"
+          ]
+        }
+      },
+      "required": [
+        "GET",
+        "POST"
+      ]
+    }
+  },
+  "required": [
+    "foo/:organization_id"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

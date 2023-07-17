@@ -1,0 +1,3 @@
+import { z } from 'zod';
+
+export const schema = z.object({"foo/:organization_id":z.object({"GET":z.object({"parameters":z.object({"path":z.object({"organization_id":z.string()})}),"responses":z.object({}),"errors":z.object({})}),"POST":z.object({"parameters":z.object({"path":z.object({"organization_id":z.string()}),"body":z.object({"name":z.string(),"age":z.number(),"email":z.string()}),"query":z.object({"premium":z.string()})}),"responses":z.object({"200":z.string()}),"errors":z.object({})})})});
