@@ -81,3 +81,59 @@ export const POST: RequestHandler = async ({ request }) => {
 		throw error(500, err);
 	}
 };
+
+
+export const GET: RequestHandler = async ({request, url}) => {
+    // make sure origin is the page
+    // if (request.headers.get('origin') !== url.origin) {
+    //      throw error(403, 'Forbidden');
+    // }
+
+    const stats = await fetch(`${TELEMETRY_ENDPOINT}/action/aggregate`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/ejson',
+            'Access-Control-Request-Headers': '*',
+            'api-key': MONGODB_DATA_API_KEY
+        },
+        body: JSON.stringify({
+            collection: 'telemetry',
+            database: 'svetch',
+            dataSource: 'Clussy',
+            pipeline: [
+                {
+                  '$group': {
+                    '_id': null, 
+                    'ProcessedFiles': {
+                      '$sum': '$data.processed_files_count'
+                    }, 
+                    'GeneratedLinesOfCode': {
+                      '$sum': '$data.generated_lines_of_code'
+                    }, 
+                    'POST': {
+                      '$sum': '$data.processed_endpoints.POST'
+                    }, 
+                    'GET': {
+                      '$sum': '$data.processed_endpoints.GET'
+                    }, 
+                    'PUT': {
+                      '$sum': '$data.processed_endpoints.PUT'
+                    }, 
+                    'PATCH': {
+                      '$sum': '$data.processed_endpoints.PATCH'
+                    }, 
+                    'DELETE': {
+                      '$sum': '$data.processed_endpoints.DELETE'
+                    }
+                  }
+                }
+              ]
+        })
+    })
+    .then((res) => res.json())
+    .catch((err) => {
+        throw error(500, err);
+    });
+     
+    return json(stats);
+};

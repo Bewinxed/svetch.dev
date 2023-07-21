@@ -1,7 +1,28 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import { prism } from 'svelte-prism-action';
-	
+
+	export let data;
+
+	const { stats } = data;
+
+	const text_colors: Record<string, string> = {
+		GET: 'text-green-500',
+		POST: 'text-blue-500',
+		PUT: 'text-yellow-500',
+		DELETE: 'text-red-500',
+		PATCH: 'text-purple-500'
+	};
+
+	// icons for each HTTP method
+	const icons: Record<string, string> = {
+		GET: 'carbon:document-download',
+		POST: 'carbon:gateway-mail',
+		PUT: 'carbon:row-insert',
+		DELETE: 'carbon:row-delete',
+		PATCH: 'carbon:edit'
+	};
+
 	let serverCode = `
     // <span class="badge badge-outline">src/foo/<span class="badge badge-accent text-white font-bold text-black">[organization_id]</span>/server.ts</span>
 
@@ -92,6 +113,8 @@ export const schema = z.object({
 	})
 });
 `;
+
+	console.log(data.stats);
 </script>
 
 <head>
@@ -136,6 +159,67 @@ export const schema = z.object({
 						NPM
 					</a>
 				</div>
+
+				<div class="divider" />
+				<h1 class="text-3xl font-black uppercase mb-2">Live Stats</h1>
+				<div class="flex flex-col">
+					<div class="stats shadow stats-vertical sm:stats-horizontal">
+						<div class="stat">
+							<div class="stat-figure text-primary">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									class="inline-block w-8 h-8 stroke-current"
+									><path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+									/></svg
+								>
+							</div>
+							<div class="stat-title">Files Processsed</div>
+							<div class="stat-value text-primary">{stats.ProcessedFiles}</div>
+							<div class="stat-desc">Much process, such time saved</div>
+						</div>
+
+						<div class="stat">
+							<div class="stat-figure text-secondary">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									class="inline-block w-8 h-8 stroke-current"
+									><path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="M13 10V3L4 14h7v7l9-11h-7z"
+									/></svg
+								>
+							</div>
+							<div class="stat-title">Codelines Generated</div>
+							<div class="stat-value text-secondary">{stats.GeneratedLinesOfCode}</div>
+							<div class="stat-desc">Code less, sleep more?</div>
+						</div>
+					</div>
+					<div class="divider" />
+					<h2 class="text-xl font-bold">Methods Processed</h2>
+					<div class="stats shadow stats-vertical sm:stats-horizontal">
+						{#each ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'] as method}
+							<div class="stat">
+								<div class="stat-figure text-primary rounded-sm">
+									<Icon icon={icons[method]} class="h-5 w-5 {text_colors[method]}" />
+								</div>
+								<div class="stat-title">{method.toUpperCase()}</div>
+								<div class="stat-value text-primary {text_colors[method]} ">{stats[method]}</div>
+								<!-- <div class="stat-desc">Much process, such time saved</div> -->
+							</div>
+						{/each}
+					</div>
+				</div>
+
 				<div class="divider" />
 				<h2 class="text-xl font-bold mb-2 tab tab-lifted">Server Code</h2>
 				<div class="mockup-code">

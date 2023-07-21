@@ -6,6 +6,7 @@
   import { fly, slide } from "svelte/transition";
   import BodyBlock from "./components/BodyBlock.svelte";
   import Collapsible from "./components/Collapsible.svelte";
+  
 
   let schema: Record<string, any>;
 
