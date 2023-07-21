@@ -39,7 +39,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"svelte-prism-action": "^1.1.2",
-		"svetch.ts": "^1.0.6"
+		"svelte-prism-action": "^1.1.2"
 	}
 }

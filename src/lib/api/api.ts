@@ -87,6 +87,49 @@ export type RecursiveJSONSchema = {
     required?: string[]
 }
 export interface APIPaths {
+  'me/bewinxed/Downloads/GuardianGeckoBot/templates/svetch.ts/src/routes/telemetry': {
+    POST: {
+      parameters: {
+        path?: never,
+        body: {
+  _id: string;
+  project: string;
+  timestamp: number;
+  data: {
+    session_id: string;
+    script_name: string;
+    script_version?: string;
+    operating_system: string;
+    node_version: string;
+    npm_version: string;
+    processed_files_count: number;
+    generated_lines_of_code: number;
+    processed_endpoints: {
+      [index: string]: number;
+    };
+    encountered_errors: boolean;
+    error_messages: string[];
+    custom_events?: Array<
+      {
+        event_name: string;
+        event_properties?: {
+          [index: string]: any;
+        };
+      }
+    >;
+  };
+},
+        query?: never,
+      },
+      responses: {
+        200: {
+          error: "Invalid payload",
+        } | any,
+      }
+      errors: {
+      }
+    },
+  },
   'foo/:organization_id': {
     GET: {
       parameters: {
