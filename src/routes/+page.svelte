@@ -1,8 +1,7 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import { prism } from 'svelte-prism-action';
-
-	// const payload = {"_id":"73d79150-a547-49f6-ae08-94277c39aec0","project":"DietGPT","timestamp":1689949410497,"data":{"session_id":"c398dd1d-bf7a-46aa-8120-6d0abd87235b","script_name":"svetch","operating_system":"linux","node_version":"v20.3.1","npm_version":"0.0.1","encountered_errors":true,"error_messages":["Detected return statement (`${food.recipe.label} - weight: ${\n\t\t\t\tfood.recipe.totalWeight / food.recipe.yield\n\t\t\t}  - calories: ${food.recipe.calories / food.recipe.yield}`) without json() or new Response() constructor, Skipping...","Detected return statement (rest) without json() or new Response() constructor, Skipping..."],"processed_files_count":67,"generated_lines_of_code":1672,"processed_endpoints":{"POST":1,"GET":6,"PUT":2,"PATCH":3,"DELETE":2}}}
+	
 	let serverCode = `
     // <span class="badge badge-outline">src/foo/<span class="badge badge-accent text-white font-bold text-black">[organization_id]</span>/server.ts</span>
 
@@ -101,7 +100,7 @@ export const schema = z.object({
 
 <!-- <button on:click={
 	() => {
-		fetch('https://svetch-dev.vercel.app/telemetry', {
+		fetch('/telemetry', {
 			method: 'post',
 			body: JSON.stringify(payload)
 		})

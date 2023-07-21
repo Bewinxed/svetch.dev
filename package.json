@@ -39,7 +39,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"fetch-ponyfill": "^7.1.0",
 		"svelte-prism-action": "^1.1.2",
 		"svetch.ts": "^1.0.21"
 	}
