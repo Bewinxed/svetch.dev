@@ -47,7 +47,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		collection: 'telemetry',
 		database: 'svetch',
 		dataSource: 'Clussy',
-		document: payload
+		document: JSON.stringify(payload)
 	});
 
 	const inserted_id = await fetch(`${TELEMETRY_ENDPOINT}/insertOne`, {
