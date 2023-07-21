@@ -1,5 +1,5 @@
 import { MONGODB_DATA_API_KEY, TELEMETRY_ENDPOINT } from '$env/static/private';
-import { json } from '@sveltejs/kit';
+import { error, json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
 export type Telemetry = {
@@ -36,7 +36,7 @@ export type Telemetry = {
 };
 
 export const POST: RequestHandler = async ({ request }) => {
-	const payload = (await request.json()) as Telemetry;
+	const payload = await request.json() as Telemetry;
 
 	// validate
 	if (!payload.project || !payload.timestamp || !payload.data) {
@@ -47,18 +47,22 @@ export const POST: RequestHandler = async ({ request }) => {
 		collection: 'telemetry',
 		database: 'svetch',
 		dataSource: 'Clussy',
-		document: JSON.stringify(payload)
+		document: payload
 	});
 
-	const inserted_id = await fetch(`${TELEMETRY_ENDPOINT}/insertOne`, {
+	const inserted_id = await fetch(`${TELEMETRY_ENDPOINT}/action/insertOne`, {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'application/json',
+			'Content-Type': 'application/ejson',
 			'Access-Control-Request-Headers': '*',
 			'api-key': MONGODB_DATA_API_KEY
 		},
 		body: data
-	}).then((res) => res.json());
+	}).then((res) => res.json()).catch((err) => {
+        throw error(500, err)
+    })
+
+    console.log(inserted_id)
 
 	return json(inserted_id);
 };

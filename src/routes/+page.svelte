@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
 	import { prism } from 'svelte-prism-action';
-
 	let serverCode = `
     // <span class="badge badge-outline">src/foo/<span class="badge badge-accent text-white font-bold text-black">[organization_id]</span>/server.ts</span>
 
@@ -97,6 +96,15 @@ export const schema = z.object({
 <head>
 	<link href="https://unpkg.com/prismjs@1.22.0/themes/prism.css" rel="stylesheet" />
 </head>
+
+<!-- <button on:click={
+	() => {
+		fetch('/telemetry', {
+			method: 'post',
+			body: JSON.stringify(payload)
+		})
+	}
+}>send</button> -->
 
 <div main use:prism class="flex flex-col h-screen bg-gray-200 overflow-x-hidden">
 	<div class="container mx-auto px-4 sm:px-6 md:px-8">
