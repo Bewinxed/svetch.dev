@@ -189,10 +189,7 @@ export const schema = z.object({
 							It will also auto generate BEAUTIFUL and functional API docs for testing &
 							documentation
 						</h1>
-						<a
-							href="https://github.com/Bewinxed/svetch"
-							class="btn btn-primary w-32 justify-center"
-						>
+						<a href="/docs" class="btn btn-primary w-32 justify-center">
 							<Icon inline icon="mingcute:book-line" />
 							Sample Docs
 						</a>
