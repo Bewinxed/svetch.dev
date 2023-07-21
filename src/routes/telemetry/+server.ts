@@ -1,4 +1,5 @@
 import { MONGODB_DATA_API_KEY, TELEMETRY_ENDPOINT } from '$env/static/private';
+import fetchPonyfill from 'fetch-ponyfill'
 import { error, json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 
@@ -50,7 +51,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		document: payload
 	});
 
-	const inserted_id = await fetch(`${TELEMETRY_ENDPOINT}/action/insertOne`, {
+	const inserted_id = await fetchPonyfill().fetch(`${TELEMETRY_ENDPOINT}/action/insertOne`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/ejson',
