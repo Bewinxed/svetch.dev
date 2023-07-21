@@ -38,11 +38,17 @@ export type Telemetry = {
 export const POST: RequestHandler = async ({ request }) => {
 	try {
 		const payload = (await request.json()) as Telemetry;
+        
+        console.log(payload);
+        
 
 		// validate
 		if (!payload.project || !payload.timestamp || !payload.data) {
-			return json({ error: 'Invalid payload' }, { status: 400 });
+			throw error(400, 'Missing required fields');
 		}
+
+        console.log(payload);
+        
 
 		const data = JSON.stringify({
 			collection: 'telemetry',
@@ -50,6 +56,8 @@ export const POST: RequestHandler = async ({ request }) => {
 			dataSource: 'Clussy',
 			document: payload
 		});
+
+        console.log(data);
 
 		const inserted_id = await fetch(`${TELEMETRY_ENDPOINT}/action/insertOne`, {
 				method: 'POST',
@@ -69,6 +77,7 @@ export const POST: RequestHandler = async ({ request }) => {
 
 		return json(inserted_id);
 	} catch (err) {
+        console.log(err)
 		throw error(500, err);
 	}
 };
