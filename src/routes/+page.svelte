@@ -147,17 +147,29 @@ export const schema = z.object({
 					<h1 class="text-5xl font-bold">Svetch.ts</h1>
 					<p class="text-gray-500">Typesafety, Minus the typing 😉</p>
 					<!-- link to the repo with icon -->
-					<a href="https://github.com/Bewinxed/svetch" class="btn btn-outline w-32 justify-center">
-						<Icon inline icon="mingcute:github-line" />
-						Github
-					</a>
-					<a
-						href="https://www.npmjs.com/package/svetch.ts"
-						class="btn btn-outline w-32 justify-center"
-					>
-						<Icon inline icon="logos:npm-icon" />
-						NPM
-					</a>
+					<div class="flex-row">
+						<a href="https://github.com/Bewinxed/svetch" class="btn btn-outline w-32 justify-center">
+							<Icon inline icon="mingcute:github-line" />
+							Github
+						</a>
+						<a
+							href="https://www.npmjs.com/package/svetch.ts"
+							class="btn btn-outline w-32 justify-center"
+						>
+							<Icon inline icon="logos:npm-icon" />
+							NPM
+						</a>
+					</div>
+				</div>
+				<div class="w-full my-2 max-w-[500px] mx-auto aspect-square relative place-items-center align-middle place-content-center flex border-4 border-black ">
+					<figure class="w-full h-full bg-no-repeat bg-center bg-[url('/one_fear.svg')]"></figure>
+					<div class="w-full pl-9 absolute top-1/2 mx-auto left-0 right-0 text-center">
+						<h1 class="upper text-lg font-extrabold ">BORN TO FETCH</h1>
+						<h1 class="upper text-base font-extrabold">WORLD IS CORS</h1>
+						<h1 class="upper text-sm font-extrabold">鬼神 Type Em All 1991</h1>
+						<h1 class="upper text-sm font-extrabold">I am typesafe man</h1>
+						<h1 class="pl-2 upper text-xs font-extrabold font">{(data.stats.GeneratedLinesOfCode/1000).toLocaleString()}k DEAD BUGS</h1>
+					</div>
 				</div>
 
 				<div class="divider" />
